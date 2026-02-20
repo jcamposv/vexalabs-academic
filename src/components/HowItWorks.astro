@@ -31,8 +31,15 @@ const features = [
 ];
 
 const schedule = [
-  { day: 'Lunes', time: '7:00 PM — 9:00 PM (GMT-6)', type: 'Fundamentos / Arquitectura' },
-  { day: 'Miércoles', time: '7:00 PM — 9:00 PM (GMT-6)', type: 'Construcción práctica' },
+  { day: 'Lunes', time: '7:00 — 9:00 PM', type: 'Fundamentos / Arquitectura' },
+  { day: 'Miércoles', time: '7:00 — 9:00 PM', type: 'Construcción práctica' },
+];
+
+const timezones = [
+  { zone: '🇨🇷 Costa Rica / 🇲🇽 México', time: '7:00 — 9:00 PM' },
+  { zone: '🇨🇴 Colombia / 🇪🇨 Ecuador / 🇵🇪 Perú', time: '8:00 — 10:00 PM' },
+  { zone: '🇺🇸 Florida (EDT)', time: '9:00 — 11:00 PM' },
+  { zone: '🇦🇷 Argentina / 🇺🇾 Uruguay', time: '10:00 PM — 12:00 AM' },
 ];
 ---
 
@@ -61,7 +68,8 @@ const schedule = [
     <!-- Schedule card -->
     <div class="mx-auto mt-12 max-w-lg">
       <Card class="!bg-brand-50 border-brand-200">
-        <h3 class="mb-4 text-center font-bold text-brand-500">Horario tentativo</h3>
+        <p class="mb-1 text-center text-xs font-semibold uppercase tracking-wider text-text-muted">Inicio: Lunes 16 de marzo, 2026</p>
+        <h3 class="mb-4 text-center font-bold text-brand-500">Horario</h3>
         <div class="space-y-3">
           {schedule.map((s) => (
             <div class="flex items-center justify-between text-sm">
@@ -70,6 +78,17 @@ const schedule = [
                 <span class="ml-2 text-text-muted">{s.type}</span>
               </div>
               <span class="text-text-muted">{s.time}</span>
+            </div>
+          ))}
+        </div>
+
+        <hr class="my-4 border-brand-200" />
+        <p class="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-text-muted">Tu hora local</p>
+        <div class="space-y-2">
+          {timezones.map((tz) => (
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-text-muted">{tz.zone}</span>
+              <span class="font-semibold text-text">{tz.time}</span>
             </div>
           ))}
         </div>
