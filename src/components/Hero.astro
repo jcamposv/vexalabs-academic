@@ -1,0 +1,45 @@
+---
+import Button from './Button.astro';
+import Badge from './Badge.astro';
+---
+
+<section class="relative overflow-hidden bg-surface" aria-labelledby="hero-heading">
+  <!-- Gradient blobs -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-brand-500/5 blur-3xl"></div>
+    <div class="absolute -right-32 top-20 h-[400px] w-[400px] rounded-full bg-brand-500/8 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-brand-500/5 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-16 lg:pt-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <!-- Badges -->
+      <div class="mb-8 flex flex-wrap items-center justify-center gap-2 animate-fade-up">
+        <Badge>En vivo — No es grabado</Badge>
+        <Badge>4 semanas · 8 sesiones</Badge>
+        <Badge>4 SaaS en producción</Badge>
+        <Badge>Cupos limitados</Badge>
+      </div>
+
+      <!-- Headline -->
+      <h1
+        id="hero-heading"
+        class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl animate-fade-up delay-100"
+      >
+        Aprendé a construir SaaS reales
+        <span class="text-brand-500">con AI — de cero a producción.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-text-muted leading-relaxed sm:text-xl animate-fade-up delay-200">
+        8 clases en vivo. 4 aplicaciones completas. Auth, base de datos, emails, pagos y deploy. Todo el stack que necesitás para lanzar productos reales.
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-up delay-300">
+        <Button href="#precios" size="lg">Reservar mi lugar</Button>
+        <Button href="#programa" variant="secondary" size="lg">Ver el programa</Button>
+      </div>
+    </div>
+  </div>
+</section>

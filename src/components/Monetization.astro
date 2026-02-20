@@ -1,0 +1,52 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const features = [
+  'Modelos de suscripción (mensual, anual)',
+  'Checkout integrado en tu app',
+  'Webhooks para automatizar activaciones',
+  'Rutas protegidas para usuarios de pago',
+  'Lógica de upgrade/downgrade',
+  'Deploy listo para producción',
+];
+---
+
+<section class="relative overflow-hidden py-12 sm:py-16" aria-labelledby="monetization-heading">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-50/80 via-surface to-surface"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-500">Monetización real — No teoría</p>
+      <h2 id="monetization-heading" class="text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+        Aprendé a integrar pagos reales con LemonSqueezy
+      </h2>
+      <p class="mt-4 text-lg text-text-muted leading-relaxed">
+        Integrá suscripciones, checkout y webhooks en tu app.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-2xl">
+      <div class="grid gap-3 sm:grid-cols-2">
+        {features.map((f) => (
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-surface-alt p-4">
+            <svg class="h-5 w-5 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span class="text-sm text-text">{f}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 rounded-2xl border border-border bg-surface-muted p-6 text-center">
+        <p class="text-lg font-bold text-text">
+          La mayoría de cursos terminan en "deploy".
+        </p>
+        <p class="mt-2 text-brand-500 font-bold text-lg">
+          El nuestro termina con un producto completo, listo para usuarios reales.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

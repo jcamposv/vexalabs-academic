@@ -1,0 +1,40 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const problems = [
+  'Te enseñan a chatear con ChatGPT → pero no a construir nada real',
+  'Te muestran demos bonitos → pero nunca los despliegan',
+  'Ignoran autenticación, base de datos, pagos → lo difícil de verdad',
+  'Al final tenés un montón de prompts → pero cero productos',
+];
+---
+
+<section class="py-12 sm:py-16" aria-labelledby="pain-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-3xl">
+      <h2 id="pain-heading" class="text-2xl font-extrabold tracking-tight sm:text-3xl text-center">
+        ¿Otro curso de prompts? <span class="text-text-muted">No gracias.</span>
+      </h2>
+
+      <ul class="mt-8 space-y-4">
+        {problems.map((p) => (
+          <li class="flex items-start gap-3 text-text-muted">
+            <svg class="mt-1 h-5 w-5 shrink-0 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <span>{p}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-10 rounded-2xl border border-brand-200 bg-brand-50 p-6 text-center">
+        <p class="text-brand-500 font-semibold text-lg">
+          Este curso es diferente.
+        </p>
+        <p class="mt-2 text-text-muted">
+          Aquí construís aplicaciones reales, las desplegás en producción y aprendés a monetizarlas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

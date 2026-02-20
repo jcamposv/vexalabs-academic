@@ -1,0 +1,56 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Accordion from './Accordion.astro';
+
+const faqs = [
+  {
+    q: '¿Necesito saber programar?',
+    a: 'Sí, necesitás bases mínimas (HTML, CSS, algo de JavaScript). No es un curso desde cero, es un curso para construir con AI.',
+  },
+  {
+    q: '¿Las clases son en vivo o grabadas?',
+    a: '100% en vivo. Construcción real en tiempo real. Si no podés asistir, tenés acceso a las grabaciones.',
+  },
+  {
+    q: '¿Qué herramientas necesito?',
+    a: 'Una computadora con VS Code o Cursor instalado, cuenta de GitHub, y ganas de construir. Todo lo demás lo configuramos en la primera clase.',
+  },
+  {
+    q: '¿Los proyectos usan AI para todo el código?',
+    a: 'Usamos AI como acelerador, pero aprendés a entender, revisar y mejorar el código generado. No es copy-paste ciego.',
+  },
+  {
+    q: '¿Qué pasa con el módulo de pagos? ¿Es real?',
+    a: 'Sí. Integramos LemonSqueezy con checkout real. Al terminar el curso tu app puede aceptar pagos.',
+  },
+  {
+    q: '¿En qué idioma es el curso?',
+    a: '100% en español. Código en inglés (estándar de la industria), pero toda la instrucción y materiales son en español.',
+  },
+  {
+    q: '¿Hay alguna garantía o política de reembolso?',
+    a: 'Sí. Si después de la primera semana sentís que el curso no es para vos, te devolvemos el 100% del dinero.',
+  },
+  {
+    q: '¿Cuándo empieza la próxima cohorte?',
+    a: 'Las fechas de la próxima cohorte se anuncian en nuestro Discord y por email. Reservá tu cupo para ser notificado.',
+  },
+];
+---
+
+<section id="faq" class="bg-surface-alt py-12 sm:py-16" aria-labelledby="faq-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionHeading
+      label="FAQ"
+      title="Preguntas frecuentes"
+    />
+
+    <div class="mx-auto max-w-3xl rounded-2xl border border-border bg-surface-muted p-2">
+      {faqs.map((faq, i) => (
+        <Accordion title={faq.q} open={i === 0}>
+          <p>{faq.a}</p>
+        </Accordion>
+      ))}
+    </div>
+  </div>
+</section>

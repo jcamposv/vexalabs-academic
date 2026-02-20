@@ -1,0 +1,67 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Card from './Card.astro';
+
+const builds = [
+  {
+    icon: '🌐',
+    title: 'Landing Page + Auth',
+    description: 'Tu primera app en producción desde la clase 2.',
+    tags: ['Next.js', 'Supabase Auth', 'Vercel'],
+  },
+  {
+    icon: '📦',
+    title: 'SaaS de Inventario',
+    description: 'Full stack con dashboard, CRUD y emails.',
+    tags: ['PostgreSQL', 'RLS', 'Resend'],
+  },
+  {
+    icon: '🗳️',
+    title: 'SaaS Elegido por Vos',
+    description: 'Los estudiantes votan qué construir.',
+    tags: ['Arquitectura limpia', 'Prompting avanzado'],
+  },
+  {
+    icon: '🏥💳',
+    title: 'SaaS de Salud + Pagos',
+    description: 'Seguridad, roles y monetización real.',
+    tags: ['LemonSqueezy', 'Webhooks', 'Suscripciones'],
+    highlight: true,
+  },
+];
+---
+
+<section id="proyectos" class="py-12 sm:py-16" aria-labelledby="projects-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionHeading
+      label="Qué vas a construir"
+      title="4 aplicaciones SaaS — construidas en vivo"
+      description="Cada semana shippeás algo real. Al final del curso tenés 4 productos en producción."
+    />
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {builds.map((b) => (
+        <Card class:list={[
+          'flex flex-col relative',
+          b.highlight ? '!border-brand-500/40 ring-1 ring-brand-500/20' : '',
+        ]}>
+          {b.highlight && (
+            <span class="absolute -top-3 right-4 rounded-full bg-brand-500 px-3 py-0.5 text-xs font-bold text-surface">
+              NUEVO
+            </span>
+          )}
+          <span class="text-3xl">{b.icon}</span>
+          <h3 class="mt-3 text-lg font-bold text-text">{b.title}</h3>
+          <p class="mt-1 text-sm text-text-muted flex-1">{b.description}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {b.tags.map((tag) => (
+              <span class="rounded-md bg-surface-muted border border-border px-2 py-0.5 text-xs text-text-muted">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
