@@ -1,0 +1,68 @@
+---
+import AcademicLayout from '../layouts/AcademicLayout.astro';
+import Nav from '../components/Nav.astro';
+import Button from '../components/Button.astro';
+---
+
+<AcademicLayout
+  title="¡Gracias por tu compra! — Vibe Coding Live"
+  description="Tu lugar está reservado. Nos vemos el 16 de marzo."
+>
+  <Nav />
+  <main>
+    <section class="flex min-h-[70vh] items-center justify-center px-4">
+      <div class="mx-auto max-w-lg text-center">
+        <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-50">
+          <svg class="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          ¡Tu lugar está reservado!
+        </h1>
+
+        <p class="mt-4 text-lg text-text-muted leading-relaxed">
+          Gracias por confiar en Vibe Coding Live. Vas a recibir un email de confirmación con todos los detalles.
+        </p>
+
+        <div class="mt-6 rounded-2xl border border-border bg-surface-alt p-5">
+          <p class="text-sm font-semibold text-text">Próximos pasos:</p>
+          <ul class="mt-3 space-y-2 text-left text-sm text-text-muted">
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-brand-500">1.</span>
+              Revisá tu email — te llegará la confirmación de pago
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-brand-500">2.</span>
+              Uníte al Discord — el link está en el email
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-brand-500">3.</span>
+              Nos vemos el <span class="font-semibold text-text">lunes 16 de marzo a las 7:00 PM (GMT-6)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-8">
+          <Button href="/" variant="secondary" size="lg">Volver al inicio</Button>
+        </div>
+      </div>
+    </section>
+  </main>
+</AcademicLayout>
+
+<!-- Fire Purchase event -->
+<script is:inline>
+  if (typeof fbq !== 'undefined') {
+    // Extract plan info from URL params if LemonSqueezy passes them,
+    // otherwise fire a generic Purchase event
+    var params = new URLSearchParams(window.location.search);
+    var value = parseFloat(params.get('amount') || '149');
+    fbq('track', 'Purchase', {
+      value: value,
+      currency: 'USD',
+      content_name: 'Vibe Coding Live',
+    });
+  }
+</script>

@@ -90,8 +90,10 @@ const plans = [
           <div class="mt-8">
             <a
               href={plan.checkoutUrl}
+              data-plan={plan.name}
+              data-price={plan.price}
               class:list={[
-                'lemonsqueezy-button flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all',
+                'lemonsqueezy-button checkout-btn flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all',
                 plan.featured
                   ? 'bg-brand-500 text-surface shadow-sm hover:bg-brand-400 hover:shadow-md'
                   : 'border border-border bg-surface-muted text-text hover:border-brand-500/40 hover:text-brand-500',
@@ -129,3 +131,19 @@ const plans = [
     </p>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.checkout-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const price = parseFloat((btn as HTMLElement).dataset.price?.replace('$', '') || '0');
+      const plan = (btn as HTMLElement).dataset.plan || '';
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout', {
+          value: price,
+          currency: 'USD',
+          content_name: plan,
+        });
+      }
+    });
+  });
+</script>
