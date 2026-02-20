@@ -3,6 +3,11 @@ import SectionHeading from './SectionHeading.astro';
 import Button from './Button.astro';
 import Badge from './Badge.astro';
 
+// TODO: Reemplazá estas URLs con tus checkout links reales de LemonSqueezy
+// Dashboard → Products → Share → Checkout URL
+const CHECKOUT_LIVE = 'https://vexalabs.lemonsqueezy.com/checkout/buy/YOUR-LIVE-VARIANT-UUID';
+const CHECKOUT_VIP = 'https://vexalabs.lemonsqueezy.com/checkout/buy/YOUR-VIP-VARIANT-UUID';
+
 const plans = [
   {
     name: 'Live Cohort',
@@ -10,6 +15,7 @@ const plans = [
     period: 'USD',
     description: 'Todo lo que necesitas para construir y lanzar tu producto.',
     featured: false,
+    checkoutUrl: CHECKOUT_LIVE,
     includes: [
       '8 sesiones en vivo (4 semanas)',
       '4 SaaS construidos y deployados',
@@ -25,6 +31,7 @@ const plans = [
     period: 'USD',
     description: 'Todo lo del plan Live + mentoría personalizada.',
     featured: true,
+    checkoutUrl: CHECKOUT_VIP,
     includes: [
       'Todo lo del plan Live Cohort',
       '4 sesiones 1:1 de 30 min',
@@ -81,21 +88,37 @@ const plans = [
           </ul>
 
           <div class="mt-8">
-            <Button
-              href="#"
-              variant={plan.featured ? 'primary' : 'secondary'}
-              size="lg"
-              class="w-full"
+            <a
+              href={plan.checkoutUrl}
+              class:list={[
+                'lemonsqueezy-button flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all',
+                plan.featured
+                  ? 'bg-brand-500 text-surface shadow-sm hover:bg-brand-400 hover:shadow-md'
+                  : 'border border-border bg-surface-muted text-text hover:border-brand-500/40 hover:text-brand-500',
+              ]}
             >
               Reservar cupo
-            </Button>
+            </a>
           </div>
         </div>
       ))}
     </div>
 
+    <!-- Refund guarantee -->
+    <div class="mx-auto mt-8 max-w-lg rounded-2xl border border-brand-500/20 bg-brand-50 p-5 text-center">
+      <div class="mb-2 flex items-center justify-center gap-2">
+        <svg class="h-5 w-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+        </svg>
+        <span class="text-sm font-bold text-text">Garantía después de la primera clase</span>
+      </div>
+      <p class="text-sm text-text-muted">
+        Si después de la primera sesión sentís que no es para vos, te devolvemos el 100% de tu dinero. Sin preguntas.
+      </p>
+    </div>
+
     <!-- Limited spots notice -->
-    <p class="mt-8 text-center text-sm text-text-muted">
+    <p class="mt-6 text-center text-sm text-text-muted">
       <span class="inline-flex items-center gap-1.5">
         <span class="relative flex h-2 w-2">
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75"></span>
