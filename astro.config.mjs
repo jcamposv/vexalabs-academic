@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://academic.vexalabs.co',
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({ maxDuration: 10 }),
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

@@ -14,7 +14,7 @@
  * Events to subscribe: order_created
  */
 import type { APIRoute } from 'astro';
-import { resend, EMAIL_FROM } from '../../../lib/resend';
+import { getResend, EMAIL_FROM } from '../../../lib/resend';
 import { purchaseConfirmationEmail } from '../../../lib/email-templates';
 
 export const prerender = false;
@@ -82,7 +82,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Send confirmation email via Resend
     try {
-      const { error } = await resend.emails.send({
+      const { error } = await getResend().emails.send({
         from: EMAIL_FROM,
         to: customerEmail,
         subject: `¡Gracias por tu compra, ${customerName.split(' ')[0]}! — Vibe Coding Live`,
@@ -111,9 +111,12 @@ export const POST: APIRoute = async ({ request }) => {
   });
 };
 
-// Reject non-POST requests
-export const ALL: APIRoute = () => {
-  return new Response('Method not allowed', { status: 405 });
+// Reject GET requests (health check)
+export const GET: APIRoute = () => {
+  return new Response(JSON.stringify({ status: 'ok', endpoint: 'lemonsqueezy-webhook' }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
 };
 
 /* ── LemonSqueezy Webhook Types ── */

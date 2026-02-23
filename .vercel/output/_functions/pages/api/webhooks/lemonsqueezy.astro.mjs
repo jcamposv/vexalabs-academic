@@ -1,8 +1,15 @@
 import { Resend } from 'resend';
 export { renderers } from '../../../renderers.mjs';
 
-const resend = new Resend("re_K5agFAa8_BXTz4K8mLQCkD6q8P58WCKHk");
 const EMAIL_FROM = "VexaLabs Academy <updates@updates.vexalabs.co>";
+let _resend = null;
+function getResend() {
+  if (!_resend) {
+    const apiKey = "re_K5agFAa8_BXTz4K8mLQCkD6q8P58WCKHk";
+    _resend = new Resend(apiKey);
+  }
+  return _resend;
+}
 
 const LOGO_URL = "https://academic.vexalabs.co/logo-vexalabs-academy.svg";
 const BRAND_GREEN = "#4ade80";
@@ -229,7 +236,7 @@ const POST = async ({ request }) => {
     const amount = `$${(data.attributes.total / 100).toFixed(2)} USD`;
     console.log(`[webhook] Order created: ${customerEmail} – ${planName} – ${amount}`);
     try {
-      const { error } = await resend.emails.send({
+      const { error } = await getResend().emails.send({
         from: EMAIL_FROM,
         to: customerEmail,
         subject: `¡Gracias por tu compra, ${customerName.split(" ")[0]}! — Vibe Coding Live`,
@@ -253,13 +260,16 @@ const POST = async ({ request }) => {
     headers: { "Content-Type": "application/json" }
   });
 };
-const ALL = () => {
-  return new Response("Method not allowed", { status: 405 });
+const GET = () => {
+  return new Response(JSON.stringify({ status: "ok", endpoint: "lemonsqueezy-webhook" }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" }
+  });
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  ALL,
+  GET,
   POST,
   prerender
 }, Symbol.toStringTag, { value: 'Module' }));
