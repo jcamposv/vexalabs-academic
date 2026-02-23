@@ -6,7 +6,7 @@
  */
 import { Resend } from 'resend';
 
-export const EMAIL_FROM = 'VexaLabs Academy <updates@updates.vexalabs.co>';
+export const EMAIL_FROM = 'VexaLabs Academy <jairo@updates.vexalabs.co>';
 
 /** Lazy-initialized Resend client to avoid crashes if env var is missing */
 let _resend: Resend | null = null;

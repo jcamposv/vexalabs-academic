@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 export { renderers } from '../../../renderers.mjs';
 
-const EMAIL_FROM = "VexaLabs Academy <updates@updates.vexalabs.co>";
+const EMAIL_FROM = "VexaLabs Academy <jairo@updates.vexalabs.co>";
 let _resend = null;
 function getResend() {
   if (!_resend) {
