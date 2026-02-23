@@ -3,10 +3,9 @@ import SectionHeading from './SectionHeading.astro';
 import Button from './Button.astro';
 import Badge from './Badge.astro';
 
-// TODO: Reemplazá estas URLs con tus checkout links reales de LemonSqueezy
-// Dashboard → Products → Share → Checkout URL
-const CHECKOUT_LIVE = 'https://vexalabs-academic.lemonsqueezy.com/checkout/buy/e742f84b-f19a-4fd1-a67a-94f55126c0ac';
-const CHECKOUT_VIP = 'https://vexalabs-academic.lemonsqueezy.com/checkout/buy/2b5ceded-a6b0-4b6a-af9a-d207c90f7be0';
+const THANK_YOU_URL = 'https://academic.vexalabs.co/gracias';
+const CHECKOUT_LIVE = `https://vexalabs-academy.lemonsqueezy.com/checkout/buy/83ce94e7-df71-4ee5-a09a-ae14c278ce7b?checkout[redirect_url]=${encodeURIComponent(THANK_YOU_URL + '?amount=149')}`;
+const CHECKOUT_VIP = `https://vexalabs-academy.lemonsqueezy.com/checkout/buy/3196e0fd-b9c1-4b69-9820-786e1ec14291?checkout[redirect_url]=${encodeURIComponent(THANK_YOU_URL + '?amount=249')}`;
 
 const plans = [
   {
@@ -133,6 +132,7 @@ const plans = [
 </section>
 
 <script>
+  // Facebook Pixel — InitiateCheckout
   document.querySelectorAll('.checkout-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const price = parseFloat((btn as HTMLElement).dataset.price?.replace('$', '') || '0');
@@ -145,5 +145,25 @@ const plans = [
         });
       }
     });
+  });
+
+  // LemonSqueezy overlay — redirect to /gracias after successful purchase
+  window.addEventListener('message', (event) => {
+    if (
+      event.origin === 'https://app.lemonsqueezy.com' &&
+      typeof event.data === 'string'
+    ) {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === 'Checkout.Success') {
+          const amount = data.data?.order?.data?.attributes?.total
+            ? (data.data.order.data.attributes.total / 100).toFixed(0)
+            : '149';
+          window.location.href = `/gracias?amount=${amount}`;
+        }
+      } catch {
+        // Not a JSON message from LemonSqueezy, ignore
+      }
+    }
   });
 </script>
