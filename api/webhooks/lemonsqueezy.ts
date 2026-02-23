@@ -98,9 +98,23 @@ function buildEmailHtml(data: { customerName: string; planName: string; amount: 
       <tr><td style="border-top:1px solid #1e2330;"></td></tr>
     </table>
 
+    <!-- Important notice -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr><td style="background-color:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:12px;padding:20px 24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="36" valign="top" style="font-size:24px;">&#128232;</td>
+            <td style="padding-left:8px;">
+              <p style="margin:0;font-size:14px;font-weight:700;color:#f1f3f5;">24 horas antes del curso vas a recibir otro correo con toda la información que necesitás para arrancar.</p>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
       <tr><td style="padding-bottom:20px;">
-        <p style="margin:0;font-size:16px;font-weight:700;color:#f1f3f5;">Próximos pasos:</p>
+        <p style="margin:0;font-size:16px;font-weight:700;color:#f1f3f5;">Mientras tanto:</p>
       </td></tr>
     </table>
 
@@ -108,8 +122,8 @@ function buildEmailHtml(data: { customerName: string; planName: string; amount: 
       <tr>
         <td width="36" valign="top"><div style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background-color:rgba(74,222,128,0.15);border-radius:50%;font-size:12px;font-weight:700;color:#4ade80;">1</div></td>
         <td style="padding-left:12px;">
-          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Uníte al Discord</p>
-          <p style="margin:0;font-size:13px;color:#8b919e;">Conectá con la comunidad. El link está en tu recibo de LemonSqueezy.</p>
+          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Revisá tu recibo de LemonSqueezy</p>
+          <p style="margin:0;font-size:13px;color:#8b919e;">Recibiste un recibo separado con los detalles del pago.</p>
         </td>
       </tr>
     </table>
@@ -118,7 +132,7 @@ function buildEmailHtml(data: { customerName: string; planName: string; amount: 
       <tr>
         <td width="36" valign="top"><div style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background-color:rgba(74,222,128,0.15);border-radius:50%;font-size:12px;font-weight:700;color:#4ade80;">2</div></td>
         <td style="padding-left:12px;">
-          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Preparate para el lunes 16 de marzo</p>
+          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Marcá el lunes 16 de marzo en tu calendario</p>
           <p style="margin:0;font-size:13px;color:#8b919e;">Primera sesión en vivo a las 7:00 PM (Costa Rica).</p>
         </td>
       </tr>
@@ -128,16 +142,10 @@ function buildEmailHtml(data: { customerName: string; planName: string; amount: 
       <tr>
         <td width="36" valign="top"><div style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background-color:rgba(74,222,128,0.15);border-radius:50%;font-size:12px;font-weight:700;color:#4ade80;">3</div></td>
         <td style="padding-left:12px;">
-          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Revisá tu recibo de LemonSqueezy</p>
-          <p style="margin:0;font-size:13px;color:#8b919e;">Recibiste un recibo separado con los detalles del pago.</p>
+          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#f1f3f5;">Estáte pendiente de tu correo</p>
+          <p style="margin:0;font-size:13px;color:#8b919e;">24 horas antes te enviamos todo lo que necesitás.</p>
         </td>
       </tr>
-    </table>
-
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
-      <tr><td align="center">
-        <a href="https://academic.vexalabs.co" style="display:inline-block;background-color:#4ade80;color:#0b0d10;text-decoration:none;font-size:14px;font-weight:700;padding:14px 32px;border-radius:12px;">Ir a VexaLabs Academy</a>
-      </td></tr>
     </table>
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
