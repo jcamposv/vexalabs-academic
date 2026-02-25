@@ -3,9 +3,7 @@ import SectionHeading from './SectionHeading.astro';
 import Button from './Button.astro';
 import Badge from './Badge.astro';
 
-const THANK_YOU_URL = 'https://academic.vexalabs.co/gracias';
-const CHECKOUT_LIVE = `https://vexalabs-academy.lemonsqueezy.com/checkout/buy/83ce94e7-df71-4ee5-a09a-ae14c278ce7b?checkout[redirect_url]=${encodeURIComponent(THANK_YOU_URL + '?amount=149')}`;
-const CHECKOUT_VIP = `https://vexalabs-academy.lemonsqueezy.com/checkout/buy/3196e0fd-b9c1-4b69-9820-786e1ec14291?checkout[redirect_url]=${encodeURIComponent(THANK_YOU_URL + '?amount=249')}`;
+const SKOOL_URL = 'https://www.skool.com/vexalabs-academy/about';
 
 const plans = [
   {
@@ -14,14 +12,14 @@ const plans = [
     period: 'USD',
     description: 'Todo lo que necesitas para construir y lanzar tu producto.',
     featured: false,
-    checkoutUrl: CHECKOUT_LIVE,
+    checkoutUrl: SKOOL_URL,
     includes: [
       '8 sesiones en vivo (4 semanas)',
       '4 SaaS construidos y deployados',
       'Módulo de pagos con LemonSqueezy',
       'Grabaciones permanentes',
       'Repo template profesional',
-      'Comunidad Discord',
+      'Comunidad Skool',
     ],
   },
   {
@@ -30,7 +28,7 @@ const plans = [
     period: 'USD',
     description: 'Todo lo del plan Live + mentoría personalizada.',
     featured: true,
-    checkoutUrl: CHECKOUT_VIP,
+    checkoutUrl: SKOOL_URL,
     includes: [
       'Todo lo del plan Live Cohort',
       '4 sesiones 1:1 de 30 min',
@@ -89,16 +87,18 @@ const plans = [
           <div class="mt-8">
             <a
               href={plan.checkoutUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               data-plan={plan.name}
               data-price={plan.price}
               class:list={[
-                'lemonsqueezy-button checkout-btn flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all',
+                'checkout-btn flex w-full items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all',
                 plan.featured
                   ? 'bg-brand-500 text-surface shadow-sm hover:bg-brand-400 hover:shadow-md'
                   : 'border border-border bg-surface-muted text-text hover:border-brand-500/40 hover:text-brand-500',
               ]}
             >
-              Reservar cupo
+              Unirse a la comunidad
             </a>
           </div>
         </div>
@@ -145,25 +145,5 @@ const plans = [
         });
       }
     });
-  });
-
-  // LemonSqueezy overlay — redirect to /gracias after successful purchase
-  window.addEventListener('message', (event) => {
-    if (
-      event.origin === 'https://app.lemonsqueezy.com' &&
-      typeof event.data === 'string'
-    ) {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.event === 'Checkout.Success') {
-          const amount = data.data?.order?.data?.attributes?.total
-            ? (data.data.order.data.attributes.total / 100).toFixed(0)
-            : '149';
-          window.location.href = `/gracias?amount=${amount}`;
-        }
-      } catch {
-        // Not a JSON message from LemonSqueezy, ignore
-      }
-    }
   });
 </script>

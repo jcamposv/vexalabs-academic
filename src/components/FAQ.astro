@@ -5,7 +5,7 @@ import Accordion from './Accordion.astro';
 const faqs = [
   {
     q: '¿Necesito saber programar?',
-    a: 'Sí, necesitás bases mínimas (HTML, CSS, algo de JavaScript). No es un curso desde cero, es un curso para construir con AI.',
+    a: 'No. El curso está diseñado para todas las personas, con o sin conocimientos de programación. Arrancamos desde cero y usamos AI como herramienta para construir productos reales.',
   },
   {
     q: '¿Las clases son en vivo o grabadas?',
@@ -48,7 +48,7 @@ const faqs = [
     <div class="mx-auto max-w-3xl rounded-2xl border border-border bg-surface-muted p-2">
       {faqs.map((faq, i) => (
         <Accordion title={faq.q} open={i === 0}>
-          <p>{faq.a}</p>
+          <p set:html={faq.a} />
         </Accordion>
       ))}
     </div>
